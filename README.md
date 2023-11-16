@@ -35,3 +35,10 @@ Assume the srt files being in 'vad_chunks' folder and having same name as .wav f
 python composeSub.py -o OUTPUT_NAME
 ```
 to compose the final subtitle. ENJOY!!! :) 
+
+## Support
+If this project help you reduce time to develop, you can give me a cup of coffee, or some beers :).
+
+<a href="https://www.buymeacoffee.com/jrwsp" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 30px !important;width: 108px !important;" ></a>
+
+<a href='https://ko-fi.com/R5R5R7C6Y' target='_blank'><img height='30' style='border:0px;height:30px;' src='https://storage.ko-fi.com/cdn/kofi2.png?v=3' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
