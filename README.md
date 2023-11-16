@@ -29,7 +29,7 @@ Then in folder `vad_chunks` The script will produce
 1. chunk.wav : audios file that contain voices.
 2. chunk_timestamps.json : data of original timestamp for reconstruct srt file.
 
-Passing those .wav files into Whisper or any transcribing model to generate srt of those chunks. I prefer using [SubtitleEdit](https://github.com/SubtitleEdit/subtitleedit) for it simplicity.
+Passing those .wav files into Whisper or any voice-to-text model to generate srt of those chunks. I prefer using [SubtitleEdit](https://github.com/SubtitleEdit/subtitleedit) for it simplicity.
 Assume the srt files being in 'vad_chunks' folder and having same name as .wav files. Calling 
 ```
 python composeSub.py -o OUTPUT_NAME
