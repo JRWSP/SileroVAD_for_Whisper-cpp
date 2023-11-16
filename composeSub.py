@@ -18,7 +18,7 @@ def srt_parse_reader(path):
     """
     Script to load not-yet-reindex srt file that saved from pysrt.
     """
-    with open(path, 'r') as f:
+    with open(path, 'r',encoding='utf8') as f:
         sub =  f.read()
     return sub
 
@@ -41,7 +41,7 @@ def write_composed_srt(file, sub):
     print("Begin writing a composed sub.")
     sub = srt.sort_and_reindex(sub)
     sub = srt.compose(sub)
-    with open(file, 'w') as f:
+    with open(file, 'w', encoding="utf-8") as f:
         f.writelines(sub)
     print("Done writing a composed sub.")
 
@@ -60,7 +60,7 @@ if __name__=="__main__":
     
     chunk_timestamps = load_chunk_timestamps('./vad_chunks/chunk_timestamps.json')
     sub = combine_naively_srt(chunk_timestamps)
-    sub.save("sub_temp.srt")
+    sub.save("sub_temp.srt", encoding='utf8')
     sub = srt.parse(srt_parse_reader('sub_temp.srt'))
     write_composed_srt(f"{output}.srt", sub) #save srt file by path name without type.
     #If finish without error, clean chunk files.
