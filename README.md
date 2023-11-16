@@ -2,6 +2,16 @@
 Scripts for filter silence periods in audio file by calling Silero-VAD. 
 Suppose to use for prepare file in foreign langauge before passing into Whisper or any voice-to-text model to transcibe and make subtitle file.
 
+# Dependecy
+
+- pytorch (cpu-only)
+- argparse
+- ffmpeg
+- json
+- moviepy
+- srt
+- pysrt
+
 # Usage
 Just using using video should be fine. Otherwise, audio can be extracted by 
 ```
