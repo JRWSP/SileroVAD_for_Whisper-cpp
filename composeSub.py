@@ -27,14 +27,12 @@ def combine_naively_srt(chunk_timestamps):
         if chunk==0:
             srt_name = f'./vad_chunks/{chunk}.srt'
             sub = pysrt.open(srt_name)
-            os.remove(srt_name)
         else:
             srt_name = f'./vad_chunks/{chunk}.srt'
             sub_to_merge = pysrt.open(srt_name)
             offset = chunk_timestamps[chunk][0]['offset']
             sub_to_merge.shift(seconds=offset)
             sub += sub_to_merge
-            os.remove(srt_name)
     return sub
 
 def write_composed_srt(file, sub):
@@ -47,6 +45,13 @@ def write_composed_srt(file, sub):
         f.writelines(sub)
     print("Done writing a composed sub.")
 
+def clean_vad_chunks(chunk_timestamps):
+    for chunk in range(len(chunk_timestamps)):
+        file = f'./vad_chunks/{chunk}'
+        os.remove(file+".srt")
+        os.remove(file+".wav")
+    os.remove('./vad_chunks/chunk_timestamps.json')
+
 if __name__=="__main__":
     parser = argparse.ArgumentParser(description="Combine srt files of VAD chunks and save as a completely composed subtitle.")
     parser.add_argument('-o', metavar='--OUTPUT', default="VAD_used_subtitle", help="Name of output srt file. Default: VAD_used_subtitle", required=False)
@@ -58,4 +63,7 @@ if __name__=="__main__":
     sub.save("sub_temp.srt")
     sub = srt.parse(srt_parse_reader('sub_temp.srt'))
     write_composed_srt(f"{output}.srt", sub) #save srt file by path name without type.
+    #If finish without error, clean chunk files.
     os.remove("sub_temp.srt")
+    clean_vad_chunks(chunk_timestamps)
+    print("vad_chunk cleaned.")
