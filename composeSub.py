@@ -18,18 +18,26 @@ def srt_parse_reader(path):
     """
     Script to load not-yet-reindex srt file that saved from pysrt.
     """
-    with open(path, 'r',encoding='utf8') as f:
+    with open(path, 'r') as f:
         sub =  f.read()
     return sub
 
 def combine_naively_srt(chunk_timestamps):
     for chunk in range(len(chunk_timestamps)):
         if chunk==0:
-            srt_name = f'./vad_chunks/{chunk}.srt'
-            sub = pysrt.open(srt_name)
+            try:
+                srt_name = f'./vad_chunks/{chunk}.srt'
+                sub = pysrt.open(srt_name)
+            except FileNotFoundError:
+                srt_name = f'./vad_chunks/{chunk}.wav.srt'
+                sub = pysrt.open(srt_name)
         else:
-            srt_name = f'./vad_chunks/{chunk}.srt'
-            sub_to_merge = pysrt.open(srt_name)
+            try:
+                srt_name = f'./vad_chunks/{chunk}.srt'
+                sub_to_merge = pysrt.open(srt_name)
+            except FileNotFoundError:
+                srt_name = f'./vad_chunks/{chunk}.wav.srt'
+                sub_to_merge = pysrt.open(srt_name)
             offset = chunk_timestamps[chunk][0]['offset']
             sub_to_merge.shift(seconds=offset)
             sub += sub_to_merge
@@ -41,15 +49,19 @@ def write_composed_srt(file, sub):
     print("Begin writing a composed sub.")
     sub = srt.sort_and_reindex(sub)
     sub = srt.compose(sub)
-    with open(file, 'w', encoding="utf-8") as f:
+    with open(file, 'w') as f:
         f.writelines(sub)
     print("Done writing a composed sub.")
 
 def clean_vad_chunks(chunk_timestamps):
     for chunk in range(len(chunk_timestamps)):
         file = f'./vad_chunks/{chunk}'
-        os.remove(file+".srt")
-        os.remove(file+".wav")
+        try:
+            os.remove(file+".wav.srt")
+            os.remove(file+".wav")
+        except FileNotFoundError:
+            os.remove(file+".wav.srt")
+            os.remove(file+".wav")
     os.remove('./vad_chunks/chunk_timestamps.json')
 
 if __name__=="__main__":
@@ -60,7 +72,7 @@ if __name__=="__main__":
     
     chunk_timestamps = load_chunk_timestamps('./vad_chunks/chunk_timestamps.json')
     sub = combine_naively_srt(chunk_timestamps)
-    sub.save("sub_temp.srt", encoding='utf8')
+    sub.save("sub_temp.srt")
     sub = srt.parse(srt_parse_reader('sub_temp.srt'))
     write_composed_srt(f"{output}.srt", sub) #save srt file by path name without type.
     #If finish without error, clean chunk files.
