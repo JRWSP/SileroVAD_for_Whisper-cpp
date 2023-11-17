@@ -1,4 +1,8 @@
-# runSileroVAD
+For CUDA-availble devices, running Whisper with Silero-VAD is easily implemented by using [Faster-Whisper](https://github.com/guillaumekln/faster-whisper). [Whisper.cpp](https://github.com/ggerganov/whisper.cpp) is an alternative to run Whisper on AMD gpu but it does not implement any-VAD. 
+
+This repo conatins python script for pre-processing input file with Silero-VAD and split it into chunks before passing them into any voice-to-text model. Then re-construct the full transcription from the chunk's results.  
+
+# Run Silero-VAD
 Scripts for filter silence periods in audio file by calling Silero-VAD. 
 Suppose to use for prepare file in foreign langauge before passing into Whisper or any voice-to-text model to transcibe and make subtitle file.
 
