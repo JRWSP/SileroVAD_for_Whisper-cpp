@@ -23,11 +23,11 @@ python convert_video_to_audio.py VIDEO_FILE.mp4
 ```
 Then, filter the file with Silero-VAD by simply call 
 ```
-python runVAD.py -f INPUT_FILE.mp3
+python runVAD.py -f INPUT_FILE
 ```
 or, for the first time, you might need to download VAD model first. This can be done by simply add force_reload argument
 ```
-python runVAD.py -f INPUT_FILE.mp3 -re
+python runVAD.py -f INPUT_FILE -re
 ```
 Then in folder `vad_chunks` The script will produce 
 1. chunk.wav : audios file that contain voices.
