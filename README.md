@@ -14,7 +14,8 @@ This repo conatins python script for pre-processing input file with Silero-VAD a
 - srt
 - pysrt
 
-To use the bash script, Need Whisper.cpp to be installed.
+# Installation
+To use with bash script, need Whisper.cpp to be installed.
 1) Download [Whisper.cpp](https://github.com/ggerganov/whisper.cpp) and make it executable.
 2) Put it in the same folder with `VAD_Whisper-cpp` and `whisper_with_VAD.sh`.
 3) Make the script executable by typing `chmod +x whisper_with_VAD.sh`.
