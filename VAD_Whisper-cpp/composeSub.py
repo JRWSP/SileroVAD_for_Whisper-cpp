@@ -31,6 +31,8 @@ def combine_naively_srt(chunk_timestamps):
             except FileNotFoundError:
                 srt_name = f'./vad_chunks/{chunk}.wav.srt'
                 sub = pysrt.open(srt_name)
+            offset = chunk_timestamps[chunk][0]['offset']
+            sub.shift(seconds=offset)
         else:
             try:
                 srt_name = f'./vad_chunks/{chunk}.srt'
