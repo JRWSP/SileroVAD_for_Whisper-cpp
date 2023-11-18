@@ -6,6 +6,7 @@ This repo conatins python script for pre-processing input file with Silero-VAD a
 
 # Dependecy
 - pytorch (only cpu needed for VAD.)
+- onnxruntime
 - argparse
 - ffmpeg
 - json
