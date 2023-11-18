@@ -52,14 +52,16 @@ python VAD_Whisper-cpp/runVAD.py -re -uo -f $file_name
 #Passing all chunk files into whisper
 files=""
 # Iterate over files in the folder
-for file in ./vad_chunks/*.wav; do
+cd vad_chunks/
+for file in $(ls -v *.wav | sort -n); do
     # Add the file to the array
-    files+="$file "
+    files+="vad_chunks/$file "
 done
+cd ..
 
 # Check if there are files to process
 if [ ${#files[@]} -gt 0 ]; then
-    ./whisper.cpp/main -m $model_path -l ja -tr -osrt -f $files 
+    ./whisper.cpp/main -m $model_path -mc 0 -l ja -tr -osrt -f $files 
     #echo $files
 else
     echo "No files found in the folder. Exiting.";
