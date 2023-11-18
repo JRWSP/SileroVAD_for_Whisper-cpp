@@ -73,8 +73,7 @@ input_name="${input_base%.*}"
 input_ext="${input_base##*.}"
 
 #Create final subtitle
-python VAD_Whisper-cpp/composeSub.py
-output_name="${input_name}.srt"
-mv VAD_used_subtitle.srt $output_name
+output_name="${input_name}"
+python VAD_Whisper-cpp/composeSub.py -o $output_name
 rm -r vad_chunks
-echo "Output subtitle: ${output_name}"
+echo "Output subtitle: ${output_name}.srt"
