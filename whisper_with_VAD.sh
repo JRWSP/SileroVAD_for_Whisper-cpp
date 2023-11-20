@@ -47,7 +47,7 @@ else
 fi
 
 #Run Silero-VAD and produce chunk files
-python VAD_Whisper-cpp/runVAD.py -re -uo -f $file_name
+python VAD_Whisper-cpp/runVAD.py -re -uo -f $file_name -vt 0.6
 
 #Passing all chunk files into whisper
 files=""
@@ -61,7 +61,7 @@ cd ..
 
 # Check if there are files to process
 if [ ${#files[@]} -gt 0 ]; then
-    ./whisper.cpp/main -m $model_path -mc 0 -l ja -tr -osrt -f $files 
+    ./whisper.cpp/main -m $model_path -mc 0 -l ja -tr -osrt -f $files
     #echo $files
 else
     echo "No files found in the folder. Exiting.";
@@ -76,6 +76,6 @@ input_ext="${input_base##*.}"
 
 #Create final subtitle
 output_name="${input_name}"
-python VAD_Whisper-cpp/composeSub.py -o $output_name
+python VAD_Whisper-cpp/composeSub.py -o "${input_dir}/${output_name}_output"
 rm -r vad_chunks
-echo "Output subtitle: ${output_name}.srt"
+echo "Output subtitle: ${input_dir}/${output_name}_output.srt"
