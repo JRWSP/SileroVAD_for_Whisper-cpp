@@ -18,7 +18,7 @@ def srt_parse_reader(path):
     """
     Script to load not-yet-reindex srt file that saved from pysrt.
     """
-    with open(path, 'r') as f:
+    with open(path, 'r', encoding="utf-8") as f:
         sub =  f.read()
     return sub
 
@@ -51,7 +51,7 @@ def write_composed_srt(file, sub):
     print("Begin writing a composed sub.")
     sub = srt.sort_and_reindex(sub)
     sub = srt.compose(sub)
-    with open(file, 'w') as f:
+    with open(file, 'w', encoding="utf-8") as f:
         f.writelines(sub)
     print("Done writing a composed sub.")
 
@@ -59,7 +59,7 @@ def clean_vad_chunks(chunk_timestamps):
     for chunk in range(len(chunk_timestamps)):
         file = f'./vad_chunks/{chunk}'
         try:
-            os.remove(file+".wav.srt")
+            os.remove(file+".srt")
             os.remove(file+".wav")
         except FileNotFoundError:
             os.remove(file+".wav.srt")
