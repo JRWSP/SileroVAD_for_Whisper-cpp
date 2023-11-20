@@ -16,19 +16,23 @@ This repo conatins python script for pre-processing input file with Silero-VAD a
 
 # Installation
 To use with bash script, need Whisper.cpp to be installed.
-1) Download [Whisper.cpp](https://github.com/ggerganov/whisper.cpp) and make it executable.
-2) Put it in the same folder with `VAD_Whisper-cpp` and `whisper_with_VAD.sh`.
+1) For Mac/Linux, download [Whisper.cpp](https://github.com/ggerganov/whisper.cpp) and make it executable. For Windows, download CLI version of [Whisperer](https://github.com/tigros/Whisperer)
+2) Put it in the same directory with `VAD_Whisper-cpp` and `whisper_with_VAD.sh` (or `whisper_with_VAD.ps1`).
 3) Make the script executable by typing `chmod +x whisper_with_VAD.sh`.
 
 If you don't want to use script, look at [manually implementation](https://github.com/JRWSP/SileroVAD_for_Whisper-cpp/tree/main/VAD_Whisper-cpp).
 
 # Usage
- Simply run
+ For Mac/Linux user that can use Shell Script, simply run
    ```
 ./whisper_with_VAD.sh -f INPUT_FILE.mp4 -m MODEL_PATH
    ```
 For example, if you want to use `small` model then replace `MODEL_PATH` with `whisper.cpp/models/ggml-small.bin`.
 
+ For Windows user, I find it is convenient to use GPU-ready version through [Whisperer](https://github.com/tigros/Whisperer). Download its CLI version and use script for PowerShell.
+ ```
+.\whisper_with_VAD.ps1 -f INPUT_FILE.mp4 -m MODEL_PATH
+ ```
 ## Support
 If this project help you reduce time to develop, you can give me a cup of coffee, or some beers so I can code more :)
 
