@@ -1,3 +1,9 @@
+If this project help you reduce time to develop, you can give me a cup of coffee, or some beers so I can code more :)
+
+BTC: bc1q2zpmmlz7ujwx2ghsgw5j7umv8wmpchplemvhtu <br>
+ETH: 0x80e98FcfED62970e35a57d2F1fefed7C89d5DaF4
+
+<a href="https://www.buymeacoffee.com/jrwsp" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 30px !important;width: 108px !important;" ></a>
 # SileroVAD for Whisper-cpp
 
 For CUDA-available devices, running Whisper with Silero-VAD is easily implemented by using [Faster-Whisper](https://github.com/guillaumekln/faster-whisper). [Whisper.cpp](https://github.com/ggerganov/whisper.cpp) is an alternative to run Whisper on AMD gpu but it does not implement any-VAD. 
@@ -33,10 +39,3 @@ For example, if you want to use `small` model then replace `MODEL_PATH` with `wh
  ```
 .\whisper_with_VAD.ps1 -f INPUT_FILE.mp4 -m MODEL_PATH
  ```
-## Support
-If this project help you reduce time to develop, you can give me a cup of coffee, or some beers so I can code more :)
-
-BTC: bc1q2zpmmlz7ujwx2ghsgw5j7umv8wmpchplemvhtu <br>
-ETH: 0x80e98FcfED62970e35a57d2F1fefed7C89d5DaF4
-
-<a href="https://www.buymeacoffee.com/jrwsp" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 30px !important;width: 108px !important;" ></a>
