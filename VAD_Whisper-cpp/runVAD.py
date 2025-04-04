@@ -8,7 +8,7 @@ import time
 
 torch.set_num_threads(1)
 
-def runVAD(audio_file, force_reload=False, USE_ONNX=False, vad_threshold:float=0.4, chunk_threshold:float=0.3):
+def runVAD(audio_path, force_reload=False, USE_ONNX=False, vad_threshold:float=0.4, chunk_threshold:float=0.3):
     """
     Main function of running VAD.
     """

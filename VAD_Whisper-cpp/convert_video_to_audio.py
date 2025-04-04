@@ -1,6 +1,6 @@
 import os
 import argparse
-from moviepy.editor import VideoFileClip
+from moviepy import VideoFileClip
 
 def convert_video_to_audio_moviepy(video_file, output_ext="wav"):
     """
@@ -8,6 +8,7 @@ def convert_video_to_audio_moviepy(video_file, output_ext="wav"):
     """
     filename, ext = os.path.splitext(video_file)
     clip = VideoFileClip(video_file)
+    print("Writing audio...")
     clip.audio.write_audiofile(f"{filename}.{output_ext}", codec='pcm_s16le', fps=16000)
 
 if __name__=="__main__":

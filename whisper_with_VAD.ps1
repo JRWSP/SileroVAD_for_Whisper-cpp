@@ -61,3 +61,20 @@ python VAD_Whisper-cpp/composeSub.py -o $output_path
 
 Remove-Item -Path $folder_path -Recurse -Force
 Write-Host "Output subtitle: $output_path"
+
+#Translate the subtitle
+$INPUT_SRT = "${input_dir}/${input_name}_output.srt"
+$OUTPUT_SRT = "${input_dir}/${input_name}.srt"
+$DEST_LANG = "en"
+$SRC_LANG = "ja"
+Write-Host "Translating ${INPUT_SRT} from ${SRC_LANG} to ${DEST_LANG}..."
+python VAD_Whisper-cpp/srt_translate.py -i "${INPUT_SRT}" -o "${OUTPUT_SRT}" -dest "${DEST_LANG}" -src "${SRC_LANG}"
+# Check if the translation was successful
+if (Test-Path "${OUTPUT_SRT}") {
+    Remove-Item -Recurse -Force "${INPUT_SRT}"
+    Write-Host "Translation completed. Output file: ${OUTPUT_SRT}"
+} else {
+    Write-Host "Unable to translate the subtitle."
+    Write-Host "Leaving the original file: ${INPUT_SRT}"
+    exit 1
+}

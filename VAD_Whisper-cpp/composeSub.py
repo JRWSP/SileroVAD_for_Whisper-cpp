@@ -78,6 +78,7 @@ if __name__=="__main__":
     sub = srt.parse(srt_parse_reader('sub_temp.srt'))
     write_composed_srt(f"{output}.srt", sub) #save srt file by path name without type.
     #If finish without error, clean chunk files.
-    os.remove("sub_temp.srt")
-    clean_vad_chunks(chunk_timestamps)
-    print("vad_chunk cleaned.")
+    if os.path.exists(f"{output}.srt"):
+        os.remove("sub_temp.srt")
+        clean_vad_chunks(chunk_timestamps)
+        print("vad_chunk cleaned.")
